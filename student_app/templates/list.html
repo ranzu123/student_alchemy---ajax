@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="float-right mb-2"><a class="btn btn-primary" href="/add">New</a></div>
+        <h3>List of Students</h3>
+        <table class="table table-hover" id="dlt">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Grade</th>
+                        <th>Faculty</th>
+                        <th>Section</th>
+                        <th>Roll_no</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Parent_name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{student.id_}}</td>
+                        <td>{{student.name}}</td>
+                        <td>{{student.grade}}</td>
+                        <td>{{student.faculty}}</td>
+                        <td>
+                            
+                                {{ student.section }}
+                            
+                        </td>
+                        <td>{{student.roll_no}}</td>
+                        <td>{{student.age}}</td>
+                        <td>
+                            
+                                {{ student.gender}}
+                          
+                        </td>
+                        <td>{{student.address}}</td>
+                        <td>{{student.parent_name}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="/edit/{{student.id_}}">Edit</a>
+                            <a class="btn btn-primary" href="#" type="button" name="" value="submit" onclick="delete_get('{{student.id_}}')">X</a>
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</body>
+<script type="text/javascript" src="/static/jquery/jquery.min.js"> </script>
+    <script type="text/javascript">
+
+        function delete_get(id_){
+            // var student_data = {
+            //             "name"       :  $("#txtName").val(),
+            //             "grade"      :  $("#txtGrade").val(),
+            //             "faculty"    :  $("#txtFaculty").val(),
+            //             "section"    :  $("#btnSection").val(),
+            //             "roll_no"    :  $("#txtRoll").val(),
+            //             "age"        :  $("#txtAge").val(),
+            //             "gender"     :  $("#btnGender").val(),
+            //             "address"    :  $("#txtAddress").val(),
+            //             "parent_name":  $("#txtParent").val()
+            //         }
+            //     console.log(student_data)
+            $.ajax({
+                type: "GET",
+                url: '/delete/' + id_,
+                data: JSON.stringify({}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function (response) {
+                console.log(response);
+                alert(response.msg);
+                window.location.href = "/list"
+    
+            }).fail(function (jqXHR, textStatus )  {
+                //error log
+            });
+            
+            
+        }
+         
+    </script>
+</html>
