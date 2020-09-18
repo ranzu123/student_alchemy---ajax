@@ -31,18 +31,10 @@
                         <td>{{student.name}}</td>
                         <td>{{student.grade}}</td>
                         <td>{{student.faculty}}</td>
-                        <td>
-                            
-                                {{ student.section }}
-                            
-                        </td>
+                        <td>{{ student.section }}</td>
                         <td>{{student.roll_no}}</td>
                         <td>{{student.age}}</td>
-                        <td>
-                            
-                                {{ student.gender}}
-                          
-                        </td>
+                        <td>{{ student.gender}}</td>
                         <td>{{student.address}}</td>
                         <td>{{student.parent_name}}</td>
                         <td>
@@ -60,18 +52,6 @@
     <script type="text/javascript">
 
         function delete_get(id_){
-            // var student_data = {
-            //             "name"       :  $("#txtName").val(),
-            //             "grade"      :  $("#txtGrade").val(),
-            //             "faculty"    :  $("#txtFaculty").val(),
-            //             "section"    :  $("#btnSection").val(),
-            //             "roll_no"    :  $("#txtRoll").val(),
-            //             "age"        :  $("#txtAge").val(),
-            //             "gender"     :  $("#btnGender").val(),
-            //             "address"    :  $("#txtAddress").val(),
-            //             "parent_name":  $("#txtParent").val()
-            //         }
-            //     console.log(student_data)
             $.ajax({
                 type: "GET",
                 url: '/delete/' + id_,
@@ -85,9 +65,7 @@
     
             }).fail(function (jqXHR, textStatus )  {
                 //error log
-            });
-            
-            
+            });   
         }
          
     </script>
